@@ -18,19 +18,20 @@ using namespace std;
 #define HEX(x) setw(2) << setfill('0') << hex << (int)(x)
 #define DEVID       0x00
 #define BUFFER_SIZE 40
+#define SENSOR_ADDR 0x27
 
 int main(){
    int file;
-   cout << "Starting the ADXL345 test application" << endl;
+   cout << "Starting the HIH-6130 test application" << endl;
    if((file=open("/dev/i2c-1", O_RDWR)) < 0){
-      cout << "failed to open the bus" << endl;
+      cout << "Failed to open the I2C Bus" << endl;
       return 1;
    }
-   if(ioctl(file, I2C_SLAVE, 0x53) < 0){
+   if(ioctl(file, I2C_SLAVE, SENSOR_ADDR) < 0){
       cout << "Failed to connect to the sensor" << endl;
       return 1;
    }
-   char writeBuffer[1] = {0x00};
+   /*char writeBuffer[1] = {0x00};
    if(write(file, writeBuffer, 1)!=1){
       cout << "Failed to reset the read address" << endl;
       return 1;
@@ -41,6 +42,7 @@ int main(){
       return 1;
    }
    cout << "The Device ID is: " << HEX(readBuffer[DEVID]) << endl;
+   */
    close(file);
    return 0;
 }

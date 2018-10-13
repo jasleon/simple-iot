@@ -1,2 +1,2 @@
 #!/bin/bash
-g++ application.cpp I2CDevice.cpp ADXL345.cpp -o ADXL345
+g++ -Iinclude source/application.cpp source/I2CDevice.cpp source/ADXL345.cpp -o ADXL345.out

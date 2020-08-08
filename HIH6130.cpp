@@ -59,7 +59,7 @@ bool HIH6130::getMeasurement()
     if(retval)
     {
         sleep(1);
-        retval = RD_BUFFER_SIZE == read(file, readBuffer, BUFFER_SIZE);
+        retval = RD_BUFFER_SIZE == read(fd, readBuffer, RD_BUFFER_SIZE);
     }
     else
     {

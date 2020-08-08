@@ -7,5 +7,6 @@ int main()
     (void)mySensor.getMeasurement();
     std::cout << "Temperature:\t" << mySensor.getTemperature() << " °C"  << std::endl;
     std::cout << "Humidity:\t"    << mySensor.getHumidity()    << " %RH" << std::endl;
+    std::cout << mySensor << std::endl;
     return 0;
 }

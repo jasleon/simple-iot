@@ -2,4 +2,4 @@
 echo "Building the applications..."
 g++ -Iinclude source/application.cpp source/I2CDevice.cpp source/ADXL345.cpp -o ADXL345.out
 g++ test/testHIH6130.cpp -o testHIH6130.out
-g++ -IHIH6130.hpp test_HIH6130.cpp HIH6130.cpp -o main.out
+g++ test_HIH6130.cpp HIH6130.cpp -o main.out

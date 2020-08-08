@@ -4,6 +4,7 @@
 #include "HIH6130.hpp"
 #include <iostream>
 #include <fcntl.h>
+#include <unistd.h>
 
 using namespace std;
 

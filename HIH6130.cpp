@@ -11,10 +11,12 @@
 
 using namespace std;
 
-HIH6130::HIH6130(string device, unsigned int address = 0x27U) : 
+HIH6130::HIH6130(string device, unsigned int address) : 
     fd(-1), 
     is_open(false),
-    is_connected(false), 
+    is_connected(false),
+    writeBuffer{0xFF}, 
+    readBuffer{0x00},
     temperature(0.0f), 
     humidity(0.0f)
 {
@@ -47,8 +49,13 @@ HIH6130::~HIH6130()
     {
         close(fd);
 
-        cout << "Closed the file descriptor" << endl;
+        cout << "File descriptor closed" << endl;
     }
+}
+
+bool HIH6130::getMeasurement()
+{
+    return false;
 }
 
 double HIH6130::getTemperature() const

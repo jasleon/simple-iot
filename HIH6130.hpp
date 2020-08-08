@@ -19,13 +19,14 @@ class HIH6130
         double temperature;
         double humidity;
         void setTemperature();
+        void setHumidity();
     
     public:
         HIH6130(string device, unsigned int address = 0x27U);
         ~HIH6130();
         bool getMeasurement();
         double getTemperature() const;
-        double getHumity() const;
+        double getHumidity() const;
 };
 
 #endif /* HIH6130_HPP */

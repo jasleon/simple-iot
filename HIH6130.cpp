@@ -70,6 +70,7 @@ bool HIH6130::getMeasurement()
     {
         cout << "Update private variables" << endl;
         setTemperature();
+        setHumidity();
     }
     else
     {
@@ -84,12 +85,18 @@ void HIH6130::setTemperature()
     temperature = (static_cast<double>(output_count) / 16383.0) * 165.0 - 40.0;
 }
 
+void HIH6130::setHumity()
+{
+    unsigned int output_count = ((readBuffer[0] & ~0xC0) << 8) | readBuffer[1];
+    humidity = (static_cast<double>(output_count) / 16383.0) * 100.0;
+}
+
 double HIH6130::getTemperature() const
 {
     return temperature;
 }
 
-double HIH6130::getHumity() const
+double HIH6130::getHumidity() const
 {
     return humidity;
 }

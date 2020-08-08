@@ -29,10 +29,4 @@ class HIH6130
         double getHumidity() const;
 };
 
-ostream& operator<<(ostream& output, HIH6130 const& self)
-{
-  output << '(' << self.getTemperature() << ", " << self.getHumidity() << ')';
-  return output;
-}
-
 #endif /* HIH6130_HPP */

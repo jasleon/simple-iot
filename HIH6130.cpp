@@ -55,7 +55,26 @@ HIH6130::~HIH6130()
 
 bool HIH6130::getMeasurement()
 {
-    return false;
+    bool retval = WR_BUFFER_SIZE == write(fd, writeBuffer, WR_BUFFER_SIZE);
+    if(retval)
+    {
+        sleep(1);
+        retval = RD_BUFFER_SIZE == read(file, readBuffer, BUFFER_SIZE);
+    }
+    else
+    {
+        cout << "Failed to write the Measurement Request (MR) command" << endl;
+    }
+    
+    if(retval)
+    {
+        cout << "Update private variables" << endl;
+    }
+    else
+    {
+        cout << "Failed to read in the buffer" << endl;
+    }
+    return retval;
 }
 
 double HIH6130::getTemperature() const

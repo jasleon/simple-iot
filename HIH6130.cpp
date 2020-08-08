@@ -69,12 +69,19 @@ bool HIH6130::getMeasurement()
     if(retval)
     {
         cout << "Update private variables" << endl;
+        setTemperature();
     }
     else
     {
         cout << "Failed to read in the buffer" << endl;
     }
     return retval;
+}
+
+void HIH6130::setTemperature()
+{
+    unsigned int output_count = (readBuffer[2] << 6) | (readBuffer[3] >> 2);
+    temperature = (static_cast<double>(output_count) / 16383.0) * 165.0 - 40.0;
 }
 
 double HIH6130::getTemperature() const

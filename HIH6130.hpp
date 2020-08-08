@@ -18,6 +18,7 @@ class HIH6130
         unsigned char readBuffer [RD_BUFFER_SIZE];
         double temperature;
         double humidity;
+        void setTemperature();
     
     public:
         HIH6130(string device, unsigned int address = 0x27U);

@@ -4,7 +4,10 @@
 int main()
 {
     HIH6130 mySensor("/dev/i2c-1");
-    (void)mySensor.getMeasurement();
-    std::cout << mySensor << std::endl;
+    for(unsigned int k = 0; k < 10; k++)
+    {
+      (void)mySensor.getMeasurement();
+      std::cout << mySensor << std::endl;
+    }
     return 0;
 }

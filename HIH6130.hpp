@@ -3,10 +3,8 @@
 
 #include <string>
 
-using namespace std;
-
-const unsigned char WR_BUFFER_SIZE = 1;
-const unsigned char RD_BUFFER_SIZE = 4;
+const unsigned char WR_BUFFER_SIZE = 1U;
+const unsigned char RD_BUFFER_SIZE = 4U;
 
 class HIH6130
 {
@@ -22,13 +20,13 @@ class HIH6130
         void setHumidity();
     
     public:
-        HIH6130(string device, unsigned int address = 0x27U);
+        HIH6130(std::string device, unsigned int address = 0x27U);
         ~HIH6130();
         bool getMeasurement();
         double getTemperature() const;
         double getHumidity() const;
 };
 
-ostream& operator<<(ostream& output, HIH6130 const& self);
+std::ostream& operator<<(std::ostream& output, HIH6130 const& sensor);
 
 #endif /* HIH6130_HPP */

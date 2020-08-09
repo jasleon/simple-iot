@@ -9,9 +9,7 @@
 #include <linux/i2c.h>
 #include <linux/i2c-dev.h>
 
-using namespace std;
-
-HIH6130::HIH6130(string device, unsigned int address) : 
+HIH6130::HIH6130(std::string device, unsigned int address) : 
     fd(-1), 
     is_open(false),
     is_connected(false),
@@ -25,21 +23,21 @@ HIH6130::HIH6130(string device, unsigned int address) :
     
     if(is_open)
     {
-        cout << "File descriptor: " << fd << endl;
+        std::cout << "File descriptor: " << fd << std::endl;
         is_connected = ioctl(fd, I2C_SLAVE, address) >= 0;
         
         if(is_connected)
         {
-            cout << "Sensor connected" << endl;
+            std::cout << "Sensor connected" << std::endl;
         }
         else
         {
-            cout << "Failed to connect to the sensor" << endl;
+            std::cout << "Failed to connect to the sensor" << std::endl;
         }
     }
     else
     {
-        cout << "Failed to open the I2C Bus" << endl;
+        std::cout << "Failed to open the I2C Bus" << std::endl;
     }
 }
 
@@ -49,7 +47,7 @@ HIH6130::~HIH6130()
     {
         close(fd);
 
-        cout << "File descriptor closed" << endl;
+        std::cout << "File descriptor closed" << std::endl;
     }
 }
 
@@ -63,18 +61,18 @@ bool HIH6130::getMeasurement()
     }
     else
     {
-        cout << "Failed to write the Measurement Request (MR) command" << endl;
+        std::cout << "Failed to write the Measurement Request (MR) command" << std::endl;
     }
     
     if(retval)
     {
-        cout << "Update private variables" << endl;
+        std::cout << "Update private variables" << std::endl;
         setTemperature();
         setHumidity();
     }
     else
     {
-        cout << "Failed to read in the buffer" << endl;
+        std::cout << "Failed to read in the buffer" << std::endl;
     }
     return retval;
 }
@@ -82,13 +80,13 @@ bool HIH6130::getMeasurement()
 void HIH6130::setTemperature()
 {
     unsigned int output_count = (readBuffer[2] << 6) | (readBuffer[3] >> 2);
-    temperature = (static_cast<double>(output_count) / 16383.0) * 165.0 - 40.0;
+    temperature = (static_cast<double>(output_count) / 16383.0f) * 165.0f - 40.0f;
 }
 
 void HIH6130::setHumidity()
 {
     unsigned int output_count = ((readBuffer[0] & ~0xC0) << 8) | readBuffer[1];
-    humidity = (static_cast<double>(output_count) / 16383.0) * 100.0;
+    humidity = (static_cast<double>(output_count) / 16383.0f) * 100.0f;
 }
 
 double HIH6130::getTemperature() const
@@ -101,7 +99,7 @@ double HIH6130::getHumidity() const
     return humidity;
 }
 
-ostream& operator<<(ostream& output, HIH6130 const& self)
+std::ostream& operator<<(std::ostream& output, HIH6130 const& self)
 {
   output << "Temperature:\t" << self.getTemperature() << " °C\n";
   output << "Humidity:\t"    << self.getHumidity()    << " %RH";

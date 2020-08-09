@@ -29,4 +29,6 @@ class HIH6130
         double getHumidity() const;
 };
 
+ostream& operator<<(ostream& output, HIH6130 const& self);
+
 #endif /* HIH6130_HPP */

@@ -101,4 +101,11 @@ double HIH6130::getHumidity() const
     return humidity;
 }
 
+ostream& operator<<(ostream& output, HIH6130 const& self)
+{
+  output << "Temperature:\t" << self.getTemperature() << " °C\n";
+  output << "Humidity:\t"    << self.getHumidity()    << " %RH\n";
+  return output;
+}
+
 #endif /* HIH6130_CPP */

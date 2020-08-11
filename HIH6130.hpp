@@ -1,12 +1,13 @@
 #ifndef HIH6130_HPP
 #define HIH6130_HPP
 
+#include "Sensor.hpp"
 #include <string>
 
 const unsigned char WR_BUFFER_SIZE = 1U;
 const unsigned char RD_BUFFER_SIZE = 4U;
 
-class HIH6130
+class HIH6130 : public Sensor
 {
     private:
         int fd;
@@ -25,6 +26,7 @@ class HIH6130
         bool getMeasurement();
         double getTemperature() const;
         double getHumidity() const;
+        bool read() override;
 };
 
 std::ostream& operator<<(std::ostream& output, HIH6130 const& sensor);

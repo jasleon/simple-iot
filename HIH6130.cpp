@@ -10,7 +10,8 @@
 #include <linux/i2c-dev.h>
 
 HIH6130::HIH6130(std::string device, unsigned int address) : 
-    fd(-1), 
+    Sensor(),
+    fd(-1),
     is_open(false),
     is_connected(false),
     writeBuffer{0xFF}, 
@@ -97,6 +98,11 @@ double HIH6130::getTemperature() const
 double HIH6130::getHumidity() const
 {
     return humidity;
+}
+
+bool read() override
+{
+    return false;
 }
 
 std::ostream& operator<<(std::ostream& output, HIH6130 const& self)

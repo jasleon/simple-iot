@@ -14,14 +14,4 @@ Sensor::~Sensor()
     std::cout << "Parent class destructor " << std::endl;
 }
 
-bool Sensor::read()
-{
-    return false;
-}
-
-std::ostream Sensor::display(std::ostream& output) const
-{
-    output << "helloWorld";
-}
-
 #endif /* SENSOR_CPP */

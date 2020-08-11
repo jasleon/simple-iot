@@ -4,7 +4,6 @@
 
 int main()
 {
-  Sensor obj;
   HIH6130 mySensor("/dev/i2c-1");
   for(unsigned int k = 0; k < 10; k++)
   {

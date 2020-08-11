@@ -8,8 +8,7 @@ class Sensor
     public:
         Sensor();
         ~Sensor();
-        bool read();
-        std::ostream display(std::ostream& output) const;
+        virtual bool read() = 0;
 };
 
 #endif /* SENSOR_HPP */
